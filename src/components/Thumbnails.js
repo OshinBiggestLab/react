@@ -1,4 +1,5 @@
 function Thumbnails() {
+  // Button handlers
   function handleOnClickLeft() {
     console.log("Left button clicked");
   }
