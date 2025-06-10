@@ -9,7 +9,7 @@ function Thumbnails() {
   }
 
   return (
-    <section className="flex flex-col items-center pt-10 gap-y-5">
+    <section className="flex flex-col items-center pt-10 gap-y-5 min-h-[400px] bg-pink-200">
       <h1 className="font-bold text-2xl">Thumbnails</h1>
       <div className="flex w-full justify-evenly items-center bg-purple-300 px-4">
         <button
