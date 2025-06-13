@@ -1,11 +1,12 @@
 import GButton from "./components/GButton";
 import FamilyTree from "./components/FamilyTree";
-import ImageSlider from "./components/Test";
+import SlideshowSwiper from "./components/SlideshowSwiper";
 
 function App() {
   return (
     <div className="App">
-      <ImageSlider />
+      {/* SlideshowSwiper: Testing slideshow library from Swiper */}
+      <SlideshowSwiper />
       <GButton />
       <FamilyTree />
     </div>

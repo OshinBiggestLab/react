@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 import jobDetails from "../data/jobDetails";
 
-function Thumbnails() {
+function SlideshowSwiper() {
   return (
     <section className="py-[140px] px-[120px] bg-gray-50 font-poppins relative">
       <div>
@@ -83,4 +83,4 @@ function Thumbnails() {
   );
 }
 
-export default Thumbnails;
+export default SlideshowSwiper;
