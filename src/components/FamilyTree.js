@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const data = {
+const familyData = {
   name: "Grandparent",
   children: [
     {
@@ -16,13 +16,13 @@ const FamilyTree = () => {
 
   useEffect(() => {
     const svg = d3.select(ref.current);
-    svg.selectAll("*").remove(); // Clear old drawing
+    svg.selectAll("*").remove(); // Clear previous drawing
 
-    const width = 600;
-    const height = 400;
+    const width = 1000;
+    const height = 600;
 
-    const root = d3.hierarchy(data);
-    const treeLayout = d3.tree().size([width - 100, height - 100]);
+    const root = d3.hierarchy(familyData);
+    const treeLayout = d3.tree().size([300, 200]); // [width - 100, height - 100] is used to adjust the lines
     treeLayout(root);
 
     // Draw links
@@ -40,25 +40,44 @@ const FamilyTree = () => {
 
     // Draw nodes
     const nodes = svg
-      .selectAll("g")
-      .data(root.descendants())
+      .selectAll("g") // Select all groups (g) for nodes
+      .data(root.descendants()) //
       .enter()
-      .append("g")
-      .attr("transform", (d) => `translate(${d.x + 50}, ${d.y + 50})`);
+      .append("g") // Create a group for each node
+      .attr("transform", (d) => `translate(${d.x + 50}, ${d.y + 50})`); // node position adjustment
 
-    nodes.append("circle").attr("r", 20).attr("fill", "#69b3a2");
+    // Do SVG (in D3) only have 3 basic math-style container shapes
+    // rect, circle, and ellipse
+
+    nodes // for shape of containers [rect, circle, ellipse]
+      .append("rect")
+      .attr("x", -40)
+      .attr("y", -20)
+      .attr("width", 80)
+      .attr("height", 40)
+      .attr("rx", 10) // rounded corners
+      .attr("fill", "purple");
 
     nodes
       .append("text")
+      .text((d) => d.data.name)
+      .attr("text-anchor", "middle")
       .attr("dy", 4)
-      .attr("x", 25)
-      .text((d) => d.data.name);
+      .style("fill", "white")
+      .style("font-size", "12px");
   }, []);
 
   return (
-    <section className=" flex flex">
-      <h1 className="font-bold">FIRST TIME WITH D3 JS LIBRARY</h1>
-      <svg ref={ref} width={600} height={400}></svg>
+    <section className="w-full h-fit overflow-auto flex flex-col items-center justify-center">
+      <h1 className="font-bold mb-4 text-xl text-center">
+        FIRST TIME WITH D3 JS LIBRARY
+      </h1>
+      <svg
+        ref={ref}
+        viewBox="0 0 1000 300"
+        preserveAspectRatio="xMidYMid meet"
+        className="w-full flex flex-col items-center justify-center bg-blue-200"
+      ></svg>
     </section>
   );
 };

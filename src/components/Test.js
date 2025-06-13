@@ -1,52 +1,52 @@
-import { useState } from "react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "../css/swiper-custom.css";
 
-const images = ["🖤", "🖤", "🖤", "🖤", "🖤", "🖤", "🖤", "🖤", "🖤", "🖤"];
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
-export default function ImageSlider() {
-  const [index, setIndex] = useState(0);
+const data = [
+  { id: 1, title: "Slide 1" },
+  { id: 2, title: "Slide 2" },
+  { id: 3, title: "Slide 3" },
+  { id: 4, title: "Slide 4" },
+  { id: 5, title: "Slide 1" },
+  { id: 6, title: "Slide 2" },
+  { id: 7, title: "Slide 3" },
+  { id: 8, title: "Slide 4" },
+];
 
-  const goLeft = () => {
-    if (index > 0) setIndex(index - 1);
-  };
-
-  const goRight = () => {
-    if (index < images.length - 1) setIndex(index + 1);
-  };
-
+function Thumbnails() {
   return (
-    <div className="w-[200px] h-[200px] relative overflow-hidden mx-auto">
-      {/* Image row */}
-      <div
-        className="flex transition-transform duration-500 min-w-[1200px] bg-black"
-        style={{ transform: `translateX(-${index * 200}px)` }}
+    <section>
+      <h1 className="font-bold text-2xl text-center">
+        Testing Library for Graph Navigator
+      </h1>
+      <Swiper
+        className="h-[200px] overflow-scroll"
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={10}
+        slidesPerView={5}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
       >
-        {images.map((src, i) => (
-          <div
-            key={i}
-            // src={src}
-            // alt={`Slide ${i}`}
-            className="w-[200px] h-[200px] object-cover flex-shrink-0 bg-purple-400"
+        {data.map((item) => (
+          <SwiperSlide
+            key={item.id}
+            className="h-[200px] bg-blue-300 flex items-center justify-center"
           >
-            {src}
-          </div>
+            <span className="text-center m-0 p-0">{item.title}</span>
+          </SwiperSlide>
         ))}
-      </div>
-
-      {/* Left button */}
-      <button
-        onClick={goLeft}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 px-2 py-1"
-      >
-        ◀
-      </button>
-
-      {/* Right button */}
-      <button
-        onClick={goRight}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 px-2 py-1"
-      >
-        ▶
-      </button>
-    </div>
+      </Swiper>
+    </section>
   );
 }
+
+export default Thumbnails;
