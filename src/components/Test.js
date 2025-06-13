@@ -18,12 +18,12 @@ function Thumbnails() {
         </h1>
 
         {/* Custom Navigation Buttons */}
-        <div className="absolute top-[220px] left-0 z-10">
+        <div className="absolute top-[420px] left-10 z-10">
           <span className="custom-prev material-symbols-outlined cursor-pointer">
             arrow_back_ios
           </span>
         </div>
-        <div className="absolute top-[220px] right-0 z-10">
+        <div className="absolute top-[420px] right-[40px] z-10">
           <span className="custom-next material-symbols-outlined cursor-pointer">
             arrow_forward_ios
           </span>
@@ -37,13 +37,13 @@ function Thumbnails() {
             prevEl: ".custom-prev",
             nextEl: ".custom-next",
           }}
-          pagination={{ clickable: true }}
+          // pagination={{ clickable: true }} // Pagination Bullets
           className="rounded-[16.84px]"
         >
           {jobDetails.map((job, index) => (
             <SwiperSlide
               key={index}
-              className="bg-white min-w-[355px] min-h-[292px] rounded-[16.84px] px-6 py-[30px] shadow-[5px_0px_56.1276px_rgba(55,55,55,0.1098)]"
+              className="bg-white min-w-[355px] min-h-[292px] rounded-[16.84px] px-6 py-[30px] "
             >
               <div className="flex items-center justify-between">
                 <div className="bg-[#fceeea] w-[140px] h-[30px] rounded-[5px] flex items-center justify-center">
